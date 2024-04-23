@@ -6,6 +6,7 @@
 // @author       You
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
+// @license MIT
 // @match        https://www.whatnot.com/dashboard/listings*
 // ==/UserScript==
 
