@@ -2,7 +2,7 @@
 // @name         WhatNot Quantity
 // @namespace    http://tampermonkey.net/
 // @version      2024-04-19
-// @description  try to take over the world!
+// @description  Quantity adjuster
 // @author       You
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
