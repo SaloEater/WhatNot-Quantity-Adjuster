@@ -2,6 +2,7 @@
 // @name         WhatNot Quantity
 // @namespace    http://tampermonkey.net/
 // @version      2024-04-19
+// @description  This is a new description.
 // @author       You
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 // @grant        none
