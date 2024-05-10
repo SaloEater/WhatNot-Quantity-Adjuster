@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         WhatNot Quantity
 // @namespace    http://tampermonkey.net/
-// @version      2024-04-19
+// @version      2024-04-19.002
 // @description  This is a new description.
 // @author       You
 // @icon         data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
@@ -583,9 +583,63 @@
     }
 
     let sleep = createSleepFeedback(toolsNode)
-    createQuantityTool(toolsNode)
-    createDuplicateTool(toolsNode)
-    createEditBreakTool(toolsNode)
+
+    // Add a dropdown list for selecting tools
+    function createToolSelector(parentNode) {
+        var toolSelector = document.createElement('select');
+        toolSelector.style.marginBottom = '10px'; // Add some margin for spacing
+        parentNode.appendChild(toolSelector);
+
+        var button = document.createElement('button')
+        button.textContent = 'X'
+        parentNode.appendChild(button);
+
+        button.addEventListener('click', function () {
+            document.body.removeChild(toolsNode)
+        })
+
+        var toolContainer = document.createElement('div')
+        parentNode.appendChild(toolContainer);
+
+
+        // Define tool options
+        var toolOptions = [
+            { name: 'Quantity', tool: createQuantityTool },
+            { name: 'Duplicate', tool: createDuplicateTool },
+            { name: 'Edit Break', tool: createEditBreakTool }
+            // Add more options as needed
+        ];
+
+        // Populate dropdown options
+        toolOptions.forEach(function(option) {
+            var optionElement = document.createElement('option');
+            optionElement.value = option.name;
+            optionElement.textContent = option.name;
+            toolSelector.appendChild(optionElement);
+        });
+
+        // Function to hide all tool interfaces
+        function hideAllToolInterfaces() {
+            // Remove all child nodes from the parent node
+            while (toolContainer.firstChild) {
+                toolContainer.removeChild(toolContainer.firstChild);
+            }
+        }
+
+        toolSelector.addEventListener('change', function() {
+            var selectedTool = toolOptions.find(option => option.name === toolSelector.value);
+            hideAllToolInterfaces()
+            selectedTool.tool(toolContainer);
+        });
+        toolOptions[0].tool(toolContainer)
+    }
+
+    // Call createToolSelector to add the dropdown list
+    createToolSelector(toolsNode);
+
+//    createQuantityTool(toolsNode)
+    //  createDuplicateTool(toolsNode)
+    //createEditBreakTool(toolsNode)
 
     console.log('tools were init')
 })();
